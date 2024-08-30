@@ -12,10 +12,28 @@ const capacites = document.getElementById("capacites");
 const idAffichage = document.getElementById("id");
 const search = document.getElementById("search").value;
 const result = document.getElementById("result");
+const btnCapture = document.getElementById("capturer");
+const listCapture = document.getElementById("capture");
+const btnListCapture = document.getElementById("pokemonCapture");
+
 let id = 0;
 
 const affichage = (data) => {
     result.classList.remove("hidden");
+    let capture = false;
+    for (let key in localStorage) {
+        if (key == data.id) {
+            btnCapture.textContent = "Capturé";
+            btnCapture.classList = "btn btn-success"
+            btnCapture.disabled = true;
+            capture = true;
+        }
+    }
+    if (capture == false) {
+        btnCapture.textContent = "Capturer";
+        btnCapture.classList = "btn btn-primary"
+        btnCapture.disabled = false;
+    }
     types.textContent = "";
     capacites.textContent = "";
     img.innerHTML = "<img src=\"" + data.sprites.front_default + "\">"
@@ -37,7 +55,7 @@ const affichage = (data) => {
     id = data.id;
 };
 
-btnSearch.addEventListener("click", async() => {
+btnSearch.addEventListener("click", async () => {
     if (search) {
         try {
             const response = await fetch(`${urlApi}/${search}`);
@@ -74,4 +92,31 @@ btnAfter.addEventListener("click", async () => {
         }
     }
 
+})
+
+async function getName(id) {
+    const response = await fetch(`${urlApi}/${id}`);
+    const data = await response.json();
+    return await data.name
+}
+
+btnCapture.addEventListener("click", async () => {
+    btnCapture.textContent = "Capturé";
+    btnCapture.classList = "btn btn-success"
+    btnCapture.disabled = true;
+    const name = await getName(id);
+    localStorage.setItem(id, name);
+})
+
+
+btnListCapture.addEventListener("click", async () => {
+    for (let key in localStorage) {
+        if (localStorage.hasOwnProperty(key)) {
+            console.log(key);
+            const response = await fetch(`${urlApi}/${key}`);
+            const data = await response.json();
+            const liste = document.createElement("p");
+            liste.textContent += data.name;
+        }
+    }
 })

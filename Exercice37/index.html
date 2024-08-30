@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div>
+        <h1>Ajouter un contact</h1>
+    <form id="contactForm">
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" name="nom" required>
+        <label for="prenom">Prenom</label>
+        <input type="text" id="prenom" name="prenom" required>
+        <label for="date">Date de naissance</label>
+        <input type="date" id="date" name="date" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        <label for="telephone">Téléphone</label>
+        <input type="text" id="telephone" name="telephone" required>
+        <label for="photo">Photo</label>
+        <input type="text" id="photo" name="photo" required>
+        <button type="submit">Ajouter</button>
+    </form>
+    </div>
+    <div>
+        <h2>Liste contacts</h2>
+        <div id="liste"></div>
+    </div>
+
+<div>
+    <form id="contactAffichage">
+        <label for="nom">Nom</label>
+        <input type="text" id="contactNom" name="nom" readonly>
+        <label for="prenom">Prenom</label>
+        <input type="text" id="contactPrenom" name="prenom" readonly>
+        <label for="date">Date de naissance</label>
+        <input type="text" id="contactDate" name="date" readonly>
+        <label for="email">Email</label>
+        <input type="email" id="contactEmail" name="email" readonly>
+        <label for="telephone">Téléphone</label>
+        <input type="text" id="contactTelephone" name="telephone" readonly>
+        <label for="photo">Photo</label>
+        <input type="text" id="contactPhoto" name="photo" readonly>
+    </form>
+    <button id="edit">Editer</button>
+</div>
+
+
+
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>
